@@ -1,0 +1,52 @@
+body {
+       padding-top: 60px;
+       padding-bottom: 40px;
+     }
+
+		  .leaderboard {
+	  padding: 60px;
+	  margin-bottom: 30px;
+	  background-image: url('/twitter-bootstrap/images/gridbg.gif');
+	  background-repeat:repeat;
+	  -webkit-border-radius: 6px;
+	  -moz-border-radius: 6px;
+	  border-radius: 6px;
+	}
+	
+<p>
+  <b>User:</b>
+  <%= @post.username %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @post.location %>
+</p>
+
+<p>
+  <b>Identification:</b>
+  <%= @post.identification %>
+</p>
+
+<p>
+  <b>Activity:</b>
+  <%= @post.activity %>
+</p>
+
+<p>
+  <b>City/State:</b>
+  <%= @post.city_and_state %>
+</p>
+
+<p>
+  <b>Time Left:</b>
+  <%= @post.time_left %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) if (@user && (@user.id == @post.user_id)) %> 
+<%= link_to 'Back', posts_path %>

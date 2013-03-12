@@ -1,0 +1,35 @@
+bakersfield
+chico
+fresno / madera
+gold country
+hanford-corcoran
+humboldt county
+imperial county
+inland empire
+los angeles
+mendocino county
+merced
+modesto
+monterey bay
+north bay
+orange county
+palm springs
+redding
+reno / tahoe
+sacramento
+san diego
+san francisco
+san francisco - east bay
+san francisco - north bay
+san francisco - peninsula
+san francisco - south bay
+san luis obispo
+santa barbara
+santa cruz
+santa maria
+siskiyou county
+stockton
+susanville
+ventura county
+visalia-tulare
+yuba-sutter

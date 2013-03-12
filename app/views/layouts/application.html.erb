@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stardust</title>
+  <%= stylesheet_link_tag    "bootstrap.min", :media => "all" %>
+  <%= javascript_include_tag "jquery-1.8.2.min.js" %>
+  <%= javascript_include_tag "bootstrap.min" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+	
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="brand" href="#">Stardust</a>
+      <div class="nav-collapse collapse">
+        <p class="navbar-text pull-right">
+		<% if @user.nil? %>
+			<span id="login" class="navbar-link" style="cursor:pointer;">Login</span>
+			<span>|</span>
+			<span id="register" class="navbar-link" style="cursor:pointer;">Register</span>
+		<% else %>
+			<span id="create_post" class="navbar-link" style="cursor:pointer;">Create Post</span>
+			<span id="username" class="navbar-link" style="cursor:pointer;"><%= @user.username %></span>
+			<span>|</span>
+			<span id="logout" class="navbar-link" style="cursor:pointer;">Logout</span>
+		<% end %>
+        </p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<%= yield %>
+
+<%= Rails.cache.fetch 'views/sessions/login_view' do render :partial => '/sessions/login' end %>
+
+<%= Rails.cache.fetch 'views/sessions/register_view' do render :partial => '/sessions/register' end %>
+
+<script>
+	$(document).ready(function () {
+	});
+	
+	$("#login").click(function() {
+	    $("#login_view").modal();
+	});
+	
+	$("#logout").click(function() {
+	    location.href = "logout";
+	});
+	
+	$("#register").click(function() {
+	    $("#register_view").modal();
+	});
+	
+	$("#create_post").click(function() {
+	    location.href = "<%= new_post_path %>";
+	});
+</script>
+
+</body>
+</html>

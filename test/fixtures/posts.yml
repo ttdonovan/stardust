@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  location: MyString
+  identification: MyString
+  activity: MyString
+  state_id: 
+  city_id: 
+  duration: 
+  delay: 
+
+two:
+  title: MyString
+  location: MyString
+  identification: MyString
+  activity: MyString
+  state_id: 
+  city_id: 
+  duration: 
+  delay: 
