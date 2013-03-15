@@ -23,8 +23,7 @@
 		<%= post.time_left %>
 		<br />
 		<%= post.username + ", " + post.city_and_state %>
-		<% if (post.user_id == @user.id) %>
-			<button id="edit_button" class="btn btn-link" type="button">Edit</button>
+		<% if (@user && (post.user_id == @user.id)) %>
 			<button id="delete_button" post_id="<%= post.id %>" class="btn btn-link" type="button">Delete</button>
 		<% end %>
 		</td>
@@ -39,17 +38,17 @@
 		var x = $(this).attr("id")
 	    location.href = "/posts/" + x;
 	});
-	
-	$("#edit_button").click(function() {
-		alert("Hi.");
-	    location.href = "logout";
-	});
+
 	
 	$("#delete_button").click(function() {	
+		alert( "Data Saved: ");
 		var id = $(this).attr("post_id")
 		
-		xmlhttp = new XMLHttpRequest(); 
-		xmlhttp.open("DELETE", "/posts/" + id, true) 
-		xmlhttp.send(null); 
+		$.ajax({
+		  type: "DELETE",
+		  url: "/posts/" + id + "r"
+		}).done(function( msg ) {
+		  alert( "Data Saved: " + msg );
+		});
 	});
 </script>
