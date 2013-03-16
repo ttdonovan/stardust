@@ -1,16 +1,14 @@
 class ApplicationController < ActionController::Base
   before_filter :user
 
-# shouldn't I be checking pwd also?
   def user
     user_id = cookies.signed[:user_id]
-        
-    if (@user.nil? && !user_id.nil?)
+    
+    if (!user_id.nil?)
       begin
         @user = User.find(user_id)
       rescue
-        # clear out cookies
-        cookies.signed[:user_id] = nil
+        cookies.delete(:user_id)
       end
     end
     
@@ -32,11 +30,11 @@ class ApplicationController < ActionController::Base
     render :json => result
   end
   
-  def get_cities
+  def get_cities    
     result = Hash.new
     
     begin
-      cities = City.get_all_by_state(params[:state_id])
+      cities = City.get_all_cities_in_cache(params[:state_id].to_i)
 
       result['status'] = 'SUCCESS'
   		result['cities'] = cities
@@ -48,9 +46,9 @@ class ApplicationController < ActionController::Base
   end
   	
 	def valid_username_chars(username)
-	  return true
 		# regex = /^[a-zA-Z0-9_]*$/
 		# username.match regex
+    return true
 	end
 	
 	def valid_password_chars(password)

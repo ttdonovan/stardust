@@ -1,11 +1,13 @@
 class State < ActiveRecord::Base
-  class << self
-    alias_method :old_all, :all
-
-    def all
-      Rails.cache.fetch 'states' do
-        results = old_all
-      end
+  def self.find_in_cache(state_id)
+    Rails.cache.fetch "state#{state_id}" do
+      results = find(state_id)
+    end
+  end
+  
+  def self.all_in_cache
+    Rails.cache.fetch 'states' do
+      results = all
     end
   end
 end

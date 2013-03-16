@@ -1,21 +1,19 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
   title: MyString
   location: MyString
   identification: MyString
   activity: MyString
-  state_id: 
-  city_id: 
-  duration: 
-  delay: 
+  state_id: 1
+  city_id: 1
+  duration: 1
+  delay: 0
 
 two:
   title: MyString
   location: MyString
   identification: MyString
   activity: MyString
-  state_id: 
-  city_id: 
-  duration: 
-  delay: 
+  state_id: 1
+  city_id: 1
+  duration: 1
+  delay: 0

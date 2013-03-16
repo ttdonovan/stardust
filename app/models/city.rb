@@ -1,19 +1,13 @@
 class City < ActiveRecord::Base
-  class << self
-    alias_method :old_all, :all
-
-    def all
-      Rails.cache.fetch 'cities' do
-        results = old_all
-      end
+  def self.find_in_cache(city_id)
+    Rails.cache.fetch "city#{city_id}" do
+      results = find(city_id)
     end
-    
-    def get_all_by_state(state_id)
-      key = "state#{state_id}"
-      
-      Rails.cache.fetch key do
-        results = find(:all, :conditions => {:state_id => state_id})
-      end
+  end
+  
+  def self.get_all_cities_in_cache(state_id)
+    Rails.cache.fetch "cities#{state_id}" do
+      results = where("state_id = #{state_id}")
     end
   end
 end
