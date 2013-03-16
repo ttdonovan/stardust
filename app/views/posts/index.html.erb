@@ -1,17 +1,11 @@
- body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-
-	  .leaderboard {
-  padding: 60px;
-  margin-bottom: 30px;
-  background-image: url('/twitter-bootstrap/images/gridbg.gif');
-  background-repeat:repeat;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-}
+<style type="text/css">
+	body {
+    padding-top: 40px;
+    padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+  }
+</style>
 	
 <table class="table table-hover">   
   <tbody>  
@@ -35,26 +29,25 @@
 
 <script>
 	var fuckoff = false;
-	
+
+	<% if flash[:notice] %>
+		alert("<%= flash[:notice] %>");
+	<% end %>
+		
 	$('.table > tbody > tr').click(function() {
 		if (fuckoff) return;
-		alert("fucking shit");
 		var x = $(this).attr("id")
 	  location.href = "/posts/" + x;
 	});
-
 	
 	$(".post_delete_button").click(function() {	
-		// alert( "Yo");
 		var id = $(this).attr("post_id")
 		
 		fuckoff = true;
 		
 		$.ajax({
-		  type: "DELETE",
-		  url: "/posts/" + id
-		}).done(function( msg ) {
-		  alert( "Deleted.");
-		});
+			type: "DELETE",
+			url: "posts/" + id
+		})
 	});
 </script>

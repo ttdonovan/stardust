@@ -2,8 +2,8 @@
 	body {
   	padding-top: 60px;
     padding-bottom: 40px;
-		padding-left: 40px;
-		padding-right: 40px;
+	padding-left: 40px;
+	padding-right: 40px;
     }
 </style>
 	
@@ -12,7 +12,7 @@
 </p>
 	
 <p>
-  <%= @post.username %> will be here <%= @post.time_left %> longer.
+  <%= @post.user.username %> will be here <%= @post.time_left %> longer.
 </p>
 
 <p>
@@ -32,7 +32,7 @@
 
 <p>
   <b>City/State:</b>
-  <%= @post.city_and_state %>
+  <%= @post.get_city%>, <% @post.get_state %>
 </p>
 
 <%= link_to 'Back', posts_path %>

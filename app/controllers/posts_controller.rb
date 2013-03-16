@@ -9,10 +9,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   def show
     @post = Post.find(params[:id])
-    
-    @post.username = User.find(@post.user_id).username
-    @post.time_left = get_time_left(@post.created_at + @post.duration.minutes)
-    @post.city_and_state = "#{City.find(@post.city_id).name}, #{State.find(@post.state_id).name}"
   end
 
   # GET /posts/new
@@ -29,10 +25,12 @@ class PostsController < ApplicationController
       @post.user_id = @user.id
 
       if @post.save
-        redirect_to @post, notice: 'Post was successfully created.'
+        flash[:notice] = "Post successfully created."
       else
-        render action: "new"
+        flash[:notice] = "Post could not be created."
       end
+      
+      redirect_to posts_path
     end
   end
 
@@ -40,12 +38,15 @@ class PostsController < ApplicationController
   def destroy
     if @user
       @post = Post.find(params[:id])
-      # @post.destroy if (@post.user_id == @user.id)
-      puts "******************************************* KILL **************************************************"
-      
-      # delete from cache
+      if (@post.user_id == @user.id)
+        @post.destroy 
+        flash[:notice] = "Post successfully deleted."
+      else
+        flash[:notice] = "Post could not be deleted."
+      end
     end
     
-    render :json => 'ok' 
+    @posts = Post.all
+    render :index
   end
 end
