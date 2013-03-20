@@ -1,6 +1,6 @@
 class State < ActiveRecord::Base
   def self.find_in_cache(state_id)
-    Rails.cache.fetch "state#{state_id}" do
+    Rails.cache.fetch "state:#{state_id}" do
       results = find(state_id)
     end
   end

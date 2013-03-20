@@ -2,8 +2,8 @@
 	body {
     padding-top: 40px;
     padding-bottom: 0px;
-	padding-left: 0px;
-	padding-right: 0px;
+	  padding-left: 0px;
+	  padding-right: 0px;
   }
 </style>
 	
@@ -18,7 +18,7 @@
 				<br />
 				<%= post.user.username + ", " + post.get_city + ", " + post.get_state %>
 				<% if (@user && (post.user_id == @user.id)) %>
-					<button id="delete_button" post_id="<%= post.id %>" class="post_delete_button btn btn-link" type="button">Delete</button>
+					<button post_id="<%= post.id %>" class="post_delete_button" type="button">Delete</button>
 				<% end %>
 			</td>
 	  </tr>
@@ -35,12 +35,18 @@
 	<% end %>
 		
 	$('.table > tbody > tr').click(function() {
-		if (fuckoff) return;
+		alert("2" + this);
+		if (fuckoff) {
+			fuckoff = false;
+			return;
+		}
+		
 		var x = $(this).attr("id")
 	  location.href = "/posts/" + x;
 	});
 	
 	$(".post_delete_button").click(function() {	
+		alert("1" + this);
 		var id = $(this).attr("post_id")
 		
 		fuckoff = true;

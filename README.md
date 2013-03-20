@@ -7,9 +7,9 @@ shits dope yo
 
 memcached keys
 --------------
-city[i]
-state[id]
+city:[id]
+state:[id]
 
 states
 cities
-cities[state_id]
+cities:[state_id]

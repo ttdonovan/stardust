@@ -1,6 +1,4 @@
-class PostsController < ApplicationController
-  # skip_before_filter :user, :only => [:index, :show]
-  
+class PostsController < ApplicationController  
   # GET /posts
   def index
     @posts = Post.all
@@ -25,12 +23,10 @@ class PostsController < ApplicationController
       @post.user_id = @user.id
 
       if @post.save
-        flash[:notice] = "Post successfully created."
+        @message = "Post successfully created."
       else
-        flash[:notice] = "Post could not be created."
+        @message = "Post could not be created."
       end
-      
-      redirect_to posts_path
     end
   end
 
@@ -40,13 +36,15 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
       if (@post.user_id == @user.id)
         @post.destroy 
-        flash[:notice] = "Post successfully deleted."
+        @message = "Post successfully deleted."
       else
-        flash[:notice] = "Post could not be deleted."
+        @message = "Post could not be deleted."
       end
     end
     
-    @posts = Post.all
-    render :index
+    respond_to do |format|
+      format.html { redirect_to posts_url }
+      format.json { head :no_content }
+    end
   end
 end
