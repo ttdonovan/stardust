@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base  
-  has_many :posts
+  has_one :posts
   
   before_save :encrypt_password
 

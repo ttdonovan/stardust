@@ -19,8 +19,7 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     if @user
-      @post = Post.new(params[:post])
-      @post.user_id = @user.id
+      @post = Post.new(params[:post].merge(:user_id => @user.id))
 
       if @post.save
         @message = "Post successfully created."
@@ -32,19 +31,16 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1
   def destroy
-    if @user
-      @post = Post.find(params[:id])
-      if (@post.user_id == @user.id)
-        @post.destroy 
-        @message = "Post successfully deleted."
-      else
-        @message = "Post could not be deleted."
-      end
-    end
+    # if @user
+    #       @post = Post.find(params[:id])
+    #       if (@post.user_id == @user.id)
+    #         @post.destroy 
+    #         @message = "Post successfully deleted."
+    #       else
+    #         @message = "Post could not be deleted."
+    #       end
+    #     end
     
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
-    end
+    render 'new'
   end
 end

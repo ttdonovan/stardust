@@ -1,10 +1,10 @@
 <style type="text/css">
 	body {
-    padding-top: 40px;
-    padding-bottom: 0px;
-	  padding-left: 0px;
-	  padding-right: 0px;
-  }
+    	padding-top: 40px;
+    	padding-bottom: 0px;
+	  	padding-left: 0px;
+	  	padding-right: 0px;
+  	}
 </style>
 	
 <table class="table table-hover">   
@@ -25,35 +25,29 @@
 	<% end %> 
 	</tbody>  
 </table>
+<button type="button" class="post_delete_button">Delete</button>
 	
 
 <script>
-	var fuckoff = false;
-
-	<% if flash[:notice] %>
-		alert("<%= flash[:notice] %>");
-	<% end %>
+	var stop_processing = false;
 		
-	$('.table > tbody > tr').click(function() {
-		alert("2" + this);
-		if (fuckoff) {
-			fuckoff = false;
+	$('.table > tbody > tr').click(function() {		
+		if (stop_processing) {
+			stop_processing = false;
 			return;
 		}
-		
-		var x = $(this).attr("id")
-	  location.href = "/posts/" + x;
+				
+	  	location.href = "/posts/" + $(this).attr("id");
 	});
 	
 	$(".post_delete_button").click(function() {	
-		alert("1" + this);
 		var id = $(this).attr("post_id")
-		
-		fuckoff = true;
-		
+				
 		$.ajax({
-			type: "DELETE",
-			url: "posts/" + id
+			url: "/posts/" + id,
+			type: "DELETE"
 		})
+		
+		stop_processing = true;
 	});
 </script>
