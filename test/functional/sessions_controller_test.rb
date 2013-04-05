@@ -5,12 +5,12 @@ class SessionsControllerTest < ActionController::TestCase
   #   get :new
   #   assert_response :success
   # end
-  # 
+  #
   # test "should get create" do
   #   get :create
   #   assert_response :success
   # end
-  # 
+  #
   # test "should get failure" do
   #   get :failure
   #   assert_response :success

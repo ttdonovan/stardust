@@ -5,56 +5,55 @@
   </div>
   <div class="modal-body">
     <form class="form-horizontal">
-	  <div class="control-group">
-	    <label class="control-label" for="login_username">Username</label>
-	    <div class="controls">
-	      <input type="text" id="login_username" maxlength="20">
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <label class="control-label" for="login_password">Password</label>
-	    <div class="controls">
-	      <input type="password" id="login_password" maxlength="20">
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <div class="controls">
-	      <label class="checkbox">
-	        <input type="checkbox" id="login_rememberme"> Remember me
-	      </label>
-	    </div>
-	  </div>
-	</form>
+    <div class="control-group">
+      <label class="control-label" for="login_username">Username</label>
+      <div class="controls">
+        <input type="text" id="login_username" maxlength="20">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="login_password">Password</label>
+      <div class="controls">
+        <input type="password" id="login_password" maxlength="20">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <label class="checkbox">
+          <input type="checkbox" id="login_rememberme"> Remember me
+        </label>
+      </div>
+    </div>
+  </form>
   </div>
   <div class="modal-footer">
     <button id="login_login_button" class="btn btn-primary">Login</button>
   </div>
 </div>
 
-<script>	
-	$('#login').on('shown', function () {
-	    $('#login_username').focus();
-	})
-	
-	
-	$("#login_login_button").click(function() {
-		document.getElementById("login_login_button").disabled = true;
+<script>
+  $('#login').on('shown', function () {
+      $('#login_username').focus();
+  })
 
-		// make the AJAX request to the server
-		$.post('/login', {username: $("#login_username").val(), password: $("#login_password").val(), remember: $('input[type=checkbox]').is(':checked')})
-			.success(function(result) {
-				if (result.status == "SUCCESS") {	
-					$('#login').modal('hide')
-					window.location.reload();
-				}  
-				else {
-					alert(result.error_message);
-					document.getElementById("login_login_button").disabled = false;
-				}          
-			})
-			.error(function(xhr, textStatus, errorThrown) {
-				alert('Internal server error.');
-				document.getElementById("login_login_button").disabled = false;
-			});
-	});
+  $("#login_login_button").click(function() {
+    document.getElementById("login_login_button").disabled = true;
+
+    // make the AJAX request to the server
+    $.post('/login', {username: $("#login_username").val(), password: $("#login_password").val(), remember: $('input[type=checkbox]').is(':checked')})
+      .success(function(result) {
+        if (result.status == "SUCCESS") {
+          $('#login').modal('hide')
+          window.location.reload();
+        }
+        else {
+          alert(result.error_message);
+          document.getElementById("login_login_button").disabled = false;
+        }
+      })
+      .error(function(xhr, textStatus, errorThrown) {
+        alert('Internal server error.');
+        document.getElementById("login_login_button").disabled = false;
+      });
+  });
 </script>

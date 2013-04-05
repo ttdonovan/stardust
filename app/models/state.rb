@@ -4,7 +4,7 @@ class State < ActiveRecord::Base
       results = find(state_id)
     end
   end
-  
+
   def self.all_in_cache
     Rails.cache.fetch 'states' do
       results = all

@@ -1,6 +1,6 @@
-class User < ActiveRecord::Base  
+class User < ActiveRecord::Base
   has_one :posts
-  
+
   before_save :encrypt_password
 
   attr_accessor :password, :password_confirmation
@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
       nil
     end
   end
-  
+
   def encrypt_password
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt
