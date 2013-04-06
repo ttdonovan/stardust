@@ -5,7 +5,7 @@ class CreateCities < ActiveRecord::Migration
       t.integer :state_id
       t.string :name
     end
-    
+
     add_index(:cities, :state_id)
   end
 end

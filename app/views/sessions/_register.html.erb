@@ -5,62 +5,61 @@
   </div>
   <div class="modal-body">
     <form class="form-horizontal">
-	  <div class="control-group">
-	    <label class="control-label" for="register_username">Username</label>
-	    <div class="controls">
-	      <input type="text" id="register_username" maxlength="20">
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <label class="control-label" for="register_password">Password</label>
-	    <div class="controls">
-	      <input type="password" id="register_password" maxlength="20">
-	    </div>
-	  </div>
-	<div class="control-group">
-	    <label class="control-label" for="register_retype_password">Retype Password</label>
-	    <div class="controls">
-	      <input type="password" id="register_retype_password" maxlength="20">
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <div class="controls">
-	      <label class="checkbox">
-	        <input type="checkbox" id="register_rememberme"> Remember me
-	      </label>
-	    </div>
-	  </div>
-	</form>
+    <div class="control-group">
+      <label class="control-label" for="register_username">Username</label>
+      <div class="controls">
+        <input type="text" id="register_username" maxlength="20">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="register_password">Password</label>
+      <div class="controls">
+        <input type="password" id="register_password" maxlength="20">
+      </div>
+    </div>
+  <div class="control-group">
+      <label class="control-label" for="register_retype_password">Retype Password</label>
+      <div class="controls">
+        <input type="password" id="register_retype_password" maxlength="20">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <label class="checkbox">
+          <input type="checkbox" id="register_rememberme"> Remember me
+        </label>
+      </div>
+    </div>
+  </form>
   </div>
   <div class="modal-footer">
     <button id="register_register_button" class="btn btn-primary">Register</button>
   </div>
 </div>
 
-<script>		
-	$('#register').on('shown', function () {
-	    $('#register_username').focus();
-	})
-	
-	
-	$("#register_register_button").click(function() {
-		document.getElementById("register_register_button").disabled = true;
+<script>
+  $('#register').on('shown', function () {
+      $('#register_username').focus();
+  })
 
-		// make the AJAX request to the server
-		$.post('/register', {username: $("#register_username").val(), password: $("#register_password").val(), retype_password: $("#register_retype_password").val(), remember: $('input[type=checkbox]').is(':checked')})
-			.success(function(result) {
-				if (result.status == "SUCCESS") {	
-					$('#register').modal('hide')
-					window.location.reload();
-				}  
-				else {
-					alert(result.error_message);
-					document.getElementById("register_register_button").disabled = false;
-				}          
-			})
-			.error(function(xhr, textStatus, errorThrown) {
-				alert('Internal server error.');
-				document.getElementById("register_register_button").disabled = false;
-			});
-	});
+  $("#register_register_button").click(function() {
+    document.getElementById("register_register_button").disabled = true;
+
+    // make the AJAX request to the server
+    $.post('/register', {username: $("#register_username").val(), password: $("#register_password").val(), retype_password: $("#register_retype_password").val(), remember: $('input[type=checkbox]').is(':checked')})
+      .success(function(result) {
+        if (result.status == "SUCCESS") {
+          $('#register').modal('hide')
+          window.location.reload();
+        }
+        else {
+          alert(result.error_message);
+          document.getElementById("register_register_button").disabled = false;
+        }
+      })
+      .error(function(xhr, textStatus, errorThrown) {
+        alert('Internal server error.');
+        document.getElementById("register_register_button").disabled = false;
+      });
+  });
 </script>

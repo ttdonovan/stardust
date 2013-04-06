@@ -1,4 +1,4 @@
-class PostsController < ApplicationController  
+class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.all
@@ -34,13 +34,13 @@ class PostsController < ApplicationController
     # if @user
     #       @post = Post.find(params[:id])
     #       if (@post.user_id == @user.id)
-    #         @post.destroy 
+    #         @post.destroy
     #         @message = "Post successfully deleted."
     #       else
     #         @message = "Post could not be deleted."
     #       end
     #     end
-    
+
     render 'new'
   end
 end

@@ -4,14 +4,13 @@ gem 'rails', '3.2.12'
 
 gem 'mysql2'
 
+gem 'figaro'
+
 gem 'time_diff'
 
 gem "bcrypt-ruby", :require => "bcrypt"
 
 gem 'dalli'
-
-gem 'binding_of_caller'
-gem 'better_errors'
 
 # gem 'aws-sdk'
 
@@ -23,13 +22,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem 'debugger'
-end
-
-group :test do
+group :development, :test do
   gem 'sqlite3'
+  gem 'seed-fu'
   gem 'debugger'
+  gem 'binding_of_caller'
+  gem 'better_errors'
 end
-
-
