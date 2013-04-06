@@ -6,47 +6,47 @@
       padding-right: 0px;
     }
 </style>
-
-<table class="table table-hover">
-  <tbody>
-  <% @posts.each do |post| %>
-    <tr id="<%= post.id %>">
-      <td>
-        <%= post.title %>
-        <br />
-        <%= post.time_left %>
-        <br />
-        <%= post.user.username + ", " + post.get_city + ", " + post.get_state %>
-        <% if (@user && (post.user_id == @user.id)) %>
-          <button post_id="<%= post.id %>" class="post_delete_button" type="button">Delete</button>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<button type="button" class="post_delete_button">Delete</button>
+	
+<table class="table table-hover">   
+  <tbody>  
+	<% @posts.each do |post| %>
+	  <tr id="<%= post.id %>">
+	    <td>
+				<%= post.title %>
+				<br />
+				<%= post.time_left %>
+				<br />
+				<%= post.user.username + ", " + post.get_city + ", " + post.get_state %>
+				<% if (@user && (post.user_id == @user.id)) %>
+					<button post_id="<%= post.id %>" class="post_delete_button" type="button">Delete</button>
+				<% end %>
+			</td>
+	  </tr>
+	<% end %> 
+	</tbody>  
+</table>	
 
 <script>
-  var stop_processing = false;
-
-  $('.table > tbody > tr').click(function() {
-    if (stop_processing) {
-      stop_processing = false;
-      return;
-    }
-
-      location.href = "/posts/" + $(this).attr("id");
-  });
-
-  $(".post_delete_button").click(function() {
-    var id = $(this).attr("post_id")
-
-    $.ajax({
-      url: "/posts/" + id,
-      type: "DELETE"
-    })
-
-    stop_processing = true;
-  });
+	var stop_processing = false;
+		
+	$('.table > tbody > tr').click(function() {		
+		alert("OOO");
+		if (stop_processing) {
+			stop_processing = false;
+			return;
+		}
+				
+	  	location.href = "/posts/" + $(this).attr("id");
+	});
+	
+	$(".post_delete_button").click(function() {	
+		var id = $(this).attr("post_id")
+				
+		$.ajax({
+			url: "/posts/" + id,
+			type: "DELETE"
+		})
+		
+		return false
+	});
 </script>
