@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: states
+#
+#  id   :integer          not null, primary key
+#  name :string(255)
+#
+
 class State < ActiveRecord::Base
   def self.find_in_cache(state_id)
     Rails.cache.fetch "state:#{state_id}" do

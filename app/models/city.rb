@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: cities
+#
+#  id       :integer          not null, primary key
+#  state_id :integer
+#  name     :string(255)
+#
+# Indexes
+#
+#  index_cities_on_state_id  (state_id)
+#
+
 class City < ActiveRecord::Base
   def self.find_in_cache(city_id)
     Rails.cache.fetch "city:#{city_id}" do

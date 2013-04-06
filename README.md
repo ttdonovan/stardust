@@ -3,6 +3,12 @@ stardust
 
 shits dope yo
 
+dependencies
+------------
+
+1. Ruby 1.9.3
+2. Ruby Bundler gem
+
 develoment setup
 ----------------
 
@@ -27,13 +33,24 @@ run database migrations
 
     $ rake db:migrate
 
-seed database with data (see https://github.com/mbleigh/seed-fu)
+seed database with data
 
     $ rake db:seed_fu
 
 boot the development server
 
     $ rails server
+
+development maintenance
+-----------------------
+
+cleanup whitespace
+
+    $ rake whitespace:all
+
+add annotation to domain models
+
+    $ annotate -p before -i
 
 memcached keys
 --------------

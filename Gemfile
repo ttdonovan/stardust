@@ -14,6 +14,9 @@ gem 'dalli'
 
 # gem 'aws-sdk'
 
+gem 'jquery-rails', '2.2.1'
+gem 'active_model_serializers', '0.7.0'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -25,6 +28,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'seed-fu'
+  gem 'annotate'
   gem 'debugger'
   gem 'binding_of_caller'
   gem 'better_errors'
