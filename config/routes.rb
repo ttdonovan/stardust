@@ -1,5 +1,15 @@
 Stardust::Application.routes.draw do
 
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :states, only: [:index]
+      resources :cities, only: [:index]
+    end
+
+    match 'v:api/*path', to: redirect('/api/v1/%{path}')
+    match '*path', to: redirect('/api/v1/%{path}')
+  end
+
   post "register" => "users#create", :as => "register"
   post "login" => "sessions#create", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
@@ -7,9 +17,6 @@ Stardust::Application.routes.draw do
   resources :users
   resources :sessions
   resources :posts
-
-  match 'get_states' => 'application#get_states'
-  match 'get_cities' => 'application#get_cities'
 
   root :to => 'posts#index'
 

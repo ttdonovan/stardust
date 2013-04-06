@@ -14,6 +14,8 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
+    active_model_serializers (0.7.0)
+      activemodel (>= 3.0)
     activemodel (3.2.12)
       activesupport (= 3.2.12)
       builder (~> 3.0.0)
@@ -28,6 +30,8 @@ GEM
     activesupport (3.2.12)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    annotate (2.5.0)
+      rake
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     better_errors (0.7.2)
@@ -62,6 +66,9 @@ GEM
     hike (1.2.1)
     i18n (0.6.4)
     journey (1.0.4)
+    jquery-rails (2.2.1)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
     json (1.7.7)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -127,6 +134,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (= 0.7.0)
+  annotate
   bcrypt-ruby
   better_errors
   binding_of_caller
@@ -134,6 +143,7 @@ DEPENDENCIES
   dalli
   debugger
   figaro
+  jquery-rails (= 2.2.1)
   mysql2
   rails (= 3.2.12)
   sass-rails (~> 3.2.3)
