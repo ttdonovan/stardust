@@ -4,7 +4,7 @@ class City < ActiveRecord::Base
       results = find(city_id)
     end
   end
-  
+
   def self.get_all_cities_in_cache(state_id)
     Rails.cache.fetch "cities:#{state_id}" do
       results = where("state_id = #{state_id}")

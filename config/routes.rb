@@ -1,16 +1,16 @@
 Stardust::Application.routes.draw do
-  
+
   post "register" => "users#create", :as => "register"
   post "login" => "sessions#create", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
-  
+
   resources :users
   resources :sessions
   resources :posts
-  
+
   match 'get_states' => 'application#get_states'
   match 'get_cities' => 'application#get_cities'
-  
+
   root :to => 'posts#index'
 
   # The priority is based upon order of creation:
