@@ -8,21 +8,23 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body>
+<body style="padding-top:40px;">
 
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
-      <a class="brand" href="#">Stardust</a>
+      <a class="brand" href="/">Stardust</a>
       <div class="nav-collapse collapse">
         <p class="navbar-text pull-right">
-    <% if @user.nil? %>
-      <span id="login" class="navbar-link" style="cursor:pointer;">Login</span>
+    <% if current_user.nil? %>
+      <!-- <span id="login" class="navbar-link" style="cursor:pointer;">Login</span> -->
+      <span><%= link_to 'Login', login_path -%></span>
       <span>|</span>
-      <span id="register" class="navbar-link" style="cursor:pointer;">Register</span>
+      <!-- <span id="register" class="navbar-link" style="cursor:pointer;">Register</span> -->
+      <span><%= link_to 'Register', register_path -%></span>
     <% else %>
       <span id="create_post" class="navbar-link" style="cursor:pointer;">Create Post</span>
-      <span id="username" class="navbar-link" style="cursor:pointer;"><%= @user.username %></span>
+      <span id="username" class="navbar-link" style="cursor:pointer;"><%= current_user.username %></span>
       <span>|</span>
       <span id="logout" class="navbar-link" style="cursor:pointer;">Logout</span>
     <% end %>
@@ -32,7 +34,13 @@
   </div>
 </div>
 
-<%= yield %>
+<%= debug flash %>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <%= yield %>
+  </div>
+</div>
 
 <%= Rails.cache.fetch 'views/sessions/login_view' do render :partial => '/sessions/login' end %>
 

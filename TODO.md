@@ -39,6 +39,11 @@ PROFILE PAGE
 
 ## OmniAuth
 
-* oauth client sign-on
-* startdust user sign-on
 * detect multi accounts ask to merge
+* add modal window for login
+* remove older login application logic and javascript
+
+## OmniAuth Keys
+
+* Google https://github.com/zquestz/omniauth-google-oauth2 and https://code.google.com/apis/console/
+  * use http://localhost:3000/auth/google_oauth2/callback for the Redirect URIs

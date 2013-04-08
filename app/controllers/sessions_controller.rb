@@ -1,5 +1,15 @@
 class SessionsController < ApplicationController
+  def new
+    flash.now.alert = warden.message if warden.message.present?
+  end
+
   def create
+    if auth = env['omniauth.auth']
+      warden.authenticate!
+      redirect_to root_url, notice: 'Signed in.'
+      return false
+    end
+
     result = Hash.new
 
     begin
@@ -11,8 +21,8 @@ class SessionsController < ApplicationController
       password = params[:password]
       error = true if (password.nil? || password.length == 0 || password.length > 20 || !valid_password_chars(password))
 
-      @user = User.authenticate(username, password)
-      error = true if @user.nil?
+      user = User.authenticate(username, password)
+      error = true if user.nil?
 
       if error
         result['status'] = 'FAILURE'
@@ -27,10 +37,11 @@ class SessionsController < ApplicationController
     end
 
     if params[:remember] == 'true'
-      cookies.permanent.signed[:user_id] = @user.id
+      cookies.permanent.signed[:user_id] = user.id
     else
-      cookies.signed[:user_id] = @user.id
+      cookies.signed[:user_id] = user.id
     end
+    session[:user_id] = user.id
 
     result['status'] = 'SUCCESS'
     render :json => result
@@ -38,6 +49,11 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.delete(:user_id)
-    redirect_to root_url
+    warden.logout
+    redirect_to root_url, notice: 'Signed out.'
+  end
+
+  def failure
+    redirect_to login_url, alert: 'Authentication failed, please try again.'
   end
 end

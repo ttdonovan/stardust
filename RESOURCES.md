@@ -5,6 +5,19 @@
 1. API versioning and Rails Routes.
     * http://stackoverflow.com/questions/9627546/api-versioning-for-rails-routes/9627796#9627796
 
+##  Authentication and Authorization
+
+1. Warden (authentication)
+    * https://github.com/hassox/warden
+    * http://railscasts.com/episodes/305-authentication-with-warden
+2. OmniAuth (authentication)
+    * http://omniauth.org/
+    * https://github.com/intridea/omniauth
+    * https://github.com/zquestz/omniauth-google-oauth2
+    * https://github.com/intridea/omniauth-identity
+    * http://railscasts.com/episodes/304-omniauth-identity
+    * http://railscasts.com/episodes/241-simple-omniauth
+
 ## Data Architecture
 
 1. Encapsolate serrialization of ActiveModel objects.

@@ -1,1 +1,3 @@
 SECRET_TOKEN: 'run "rake secret" and replace this string with the new secret'
+GOOGLE_KEY:
+GOOGLE_SECRET:

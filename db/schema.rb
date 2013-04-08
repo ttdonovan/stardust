@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127220052) do
+ActiveRecord::Schema.define(:version => 20130408035536) do
 
   create_table "cities", :force => true do |t|
     t.integer "state_id"
@@ -19,6 +19,31 @@ ActiveRecord::Schema.define(:version => 20121127220052) do
   end
 
   add_index "cities", ["state_id"], :name => "index_cities_on_state_id"
+
+  create_table "credentials", :force => true do |t|
+    t.integer  "user_id",                    :null => false
+    t.string   "provider",                   :null => false
+    t.string   "uid",                        :null => false
+    t.string   "name",       :default => ""
+    t.string   "email",      :default => ""
+    t.text     "info",       :default => ""
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "credentials", ["email"], :name => "index_credentials_on_email"
+  add_index "credentials", ["provider", "uid"], :name => "index_credentials_on_provider_and_uid"
+  add_index "credentials", ["user_id"], :name => "index_credentials_on_user_id"
+
+  create_table "identities", :force => true do |t|
+    t.string   "name",            :default => ""
+    t.string   "email",                           :null => false
+    t.string   "password_digest",                 :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "identities", ["email"], :name => "index_identities_on_email"
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id"

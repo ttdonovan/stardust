@@ -12,6 +12,7 @@
 
 class User < ActiveRecord::Base
   has_one :posts
+  has_many :credentials
 
   before_save :encrypt_password
 

@@ -15,8 +15,13 @@ Stardust::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
 
   resources :users
-  resources :sessions
   resources :posts
+
+  get '/register',  to: 'identities#new',  as: 'register'
+  get '/login',     to: 'sessions#new',    as: 'login'
+
+  match '/auth/:provider/callback', to: 'sessions#create',  via: [:post, :get]
+  match '/auth/failure',            to: 'sessions#failure', via: [:post, :get]
 
   root :to => 'posts#index'
 

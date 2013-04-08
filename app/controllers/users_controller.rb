@@ -80,7 +80,7 @@ class UsersController < ApplicationController
         render :json => result and return
       end
 
-      @user = User.create(:username => username, :password => password)
+      user = User.create(:username => username, :password => password)
 
       logger.info "Created new user #{username}"
     rescue
@@ -91,10 +91,11 @@ class UsersController < ApplicationController
     end
 
     if params[:remember] == 'true'
-      cookies.permanent.signed[:user_id] = @user.id
+      cookies.permanent.signed[:user_id] = user.id
     else
-      cookies.signed[:user_id] = @user.id
+      cookies.signed[:user_id] = user.id
     end
+    session[:user_id] = user.id
 
     result['status'] = 'SUCCESS'
     render :json => result

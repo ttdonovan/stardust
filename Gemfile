@@ -17,6 +17,10 @@ gem 'dalli'
 gem 'jquery-rails', '2.2.1'
 gem 'active_model_serializers', '0.7.0'
 
+gem 'warden',                 '1.2.1'
+gem 'omniauth-google-oauth2', '0.1.13'
+gem 'omniauth-identity',      '1.1.0'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -33,3 +37,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
 end
+
+# group :development, :test do
+#   gem 'pry'
+# end
